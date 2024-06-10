@@ -12,6 +12,7 @@ file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_executable(Roguelike101 ${SOURCES})
 
 target_include_directories(Roguelike101 PRIVATE ${CMAKE_SOURCE_DIR}/include)
+target_include_directories(Roguelike101 PRIVATE ${CMAKE_SOURCE_DIR}/lib)
 
 find_package(libtcod CONFIG REQUIRED)
 target_link_libraries(Roguelike101 PRIVATE libtcod::libtcod)
