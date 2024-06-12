@@ -8,11 +8,14 @@ set(CMAKE_CXX_USE_RESPONSE_FILE_FOR_INCLUDES 0)
 add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
+file(GLOB_RECURSE ALL_INCLUDE "src/*.hpp")
 file(GLOB_RECURSE SOURCES "src/*.cpp")
-add_executable(Roguelike101 ${SOURCES})
+add_executable(Roguelike101 ${SOURCES} ${ALL_INCLUDE})
 
 target_include_directories(Roguelike101 PRIVATE ${CMAKE_SOURCE_DIR}/include)
 target_include_directories(Roguelike101 PRIVATE ${CMAKE_SOURCE_DIR}/lib)
 
 find_package(libtcod CONFIG REQUIRED)
-target_link_libraries(Roguelike101 PRIVATE libtcod::libtcod)
+find_package(SDL2 CONFIG REQUIRED)
+set(SDL2MAIN SDL2::SDL2main)
+target_link_libraries(Roguelike101 PRIVATE libtcod::libtcod ${SDL2MAIN})
