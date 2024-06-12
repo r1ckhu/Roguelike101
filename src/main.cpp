@@ -3,8 +3,8 @@
 #include <libtcod.hpp>
 #include <memory>
 
+#include "Game.hpp"
 #include "GameContext.hpp"
-
 std::unique_ptr<GameContext> initContext() {
    GameContext game_context;
    const char* const tileset_path = "data/fonts/terminal16x16_gs_ro.png";
@@ -25,7 +25,8 @@ std::unique_ptr<GameContext> initContext() {
 int main() {
    SDL_LogSetAllPriority(SDL_LOG_PRIORITY_WARN);
    auto game_context = initContext();
+   Game game(std::move(game_context));
+   game.loop();
    atexit(TCOD_quit);
-
    return 0;
 }
