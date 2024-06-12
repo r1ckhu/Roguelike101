@@ -1,7 +1,7 @@
 #pragma once
 #include <libtcod.hpp>
 
-#include "Actor.hpp"
+#include "Actor/Actor.hpp"
 #include "GameMap.hpp"
 #include "GetterSetter.h"
 class Camera {

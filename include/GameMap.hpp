@@ -5,7 +5,6 @@
 #include "Cell.hpp"
 #include "GetterSetter.h"
 
-
 class GameMap {
   public:
    using MapData = std::vector<std::vector<Cell>>;
@@ -34,7 +33,14 @@ class GameMap {
    }
 
    void setMapData(MapData new_map_data) { map_data = std::move(new_map_data); }
-   
+
+   bool isWalkable(int x, int y) {
+      return testInside(x, y) && map_data[y][x].isWalkable();
+   }
+   bool isTransparent(int x, int y) {
+      return testInside(x, y) && map_data[y][x].isTransparent();
+   }
+
    DEFINE_GETTER(int, x_size);
    DEFINE_GETTER(int, y_size);
 

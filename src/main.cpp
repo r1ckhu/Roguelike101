@@ -5,6 +5,8 @@
 
 #include "Game.hpp"
 #include "GameContext.hpp"
+#include "StageConstructor/TestStageConstructor.hpp"
+
 std::unique_ptr<GameContext> initContext() {
    GameContext game_context;
    const char* const tileset_path = "data/fonts/terminal16x16_gs_ro.png";
@@ -22,11 +24,14 @@ std::unique_ptr<GameContext> initContext() {
    return std::make_unique<GameContext>(std::move(game_context));
 }
 
-int main() {
-   SDL_LogSetAllPriority(SDL_LOG_PRIORITY_WARN);
+int main(int argc, char* argv[]) {
    auto game_context = initContext();
-   Game game(std::move(game_context));
-   game.loop();
-   atexit(TCOD_quit);
+
+   TestStageConstructor tsc;
+   std::unique_ptr<Stage> stage;
+   tsc.construct(*stage.get());
+
+   // Game game(std::move(game_context), std::move(stage));
+   // game.loop();
    return 0;
 }

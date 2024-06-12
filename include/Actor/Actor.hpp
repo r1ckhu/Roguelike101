@@ -9,13 +9,14 @@
 class Stage;
 class Actor {
   public:
-   virtual void process(Stage* game_info, SDL_Event event) = 0;
-   int x, y;
+   virtual ~Actor() = default;
+
+   virtual void process(Stage* game_info) = 0;
+   virtual void processInput(Stage* game_info, SDL_Event& event) = 0;
 
    template <typename T>
-   std::shared_ptr<T> addComponent(std::shared_ptr<T> component) {
+   void addComponent(std::shared_ptr<T> component) {
       components_[std::type_index(typeid(T))] = component;
-      return std::make_shared<T>(component);
    }
 
    template <typename T>
@@ -27,6 +28,7 @@ class Actor {
       throw std::runtime_error("Component not found");
    }
 
+   int x, y;
   private:
    std::unordered_map<std::type_index, std::shared_ptr<void>> components_;
 };
