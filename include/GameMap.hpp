@@ -18,11 +18,11 @@ class GameMap {
       return x >= 0 && y >= 0 && x < x_size && y < y_size;
    }
 
-   char getGlyph(int x, int y) {
+   Tile getTile(int x, int y) {
       if (!testInside(x, y)) {
          throw std::runtime_error("GameMap: Out of bound.");
       }
-      return map_data[y][x].getGlyph();
+      return map_data[y][x].getTile();
    };
 
    Cell& getCell(int x, int y) {

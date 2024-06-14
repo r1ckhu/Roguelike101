@@ -5,6 +5,7 @@
 Player::Player(int health) {
    health_comp = std::make_shared<HealthComponent>(health);
    addComponent(health_comp);
+   tile = Tile('@', WHITE, BLACK);
 }
 
 Player::Player() : Player(0) {}
@@ -39,7 +40,7 @@ void Player::processInput(Stage* game_info, SDL_Event& event) {
 void Player::tryMoving(Stage* game_info, int dx, int dy) {
    int dst_x = x + dx;
    int dst_y = y + dy;
-   if (game_info->isWalkable(x, y)) {
+   if (game_info->isWalkable(dst_x, dst_y)) {
       x = dst_x;
       y = dst_y;
    }

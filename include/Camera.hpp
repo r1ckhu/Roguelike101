@@ -2,9 +2,11 @@
 #include <libtcod.hpp>
 
 #include "Actor/Actor.hpp"
-#include "GameMap.hpp"
 #include "GetterSetter.h"
+#include "Stage.hpp"
+
 class Camera {
+  public:
    Camera() = default;
    Camera(int viewport_x_, int viewport_y_)
        : viewport_x(viewport_x_),
@@ -15,7 +17,7 @@ class Camera {
       center_x = follower_->x;
       center_y = follower_->y;
    }
-   DEFINE_SETTER(GameMap*, game_map)
+   DEFINE_SETTER(Stage*, stage);
    DEFINE_SETTER(int, viewport_x);
    DEFINE_SETTER(int, viewport_y);
    DEFINE_SETTER(int, center_x);
@@ -26,6 +28,6 @@ class Camera {
    int viewport_x, viewport_y;
    int center_x, center_y;
    tcod::Console camera_console;
-   GameMap* game_map;
+   Stage* stage;
    Actor* follower;
 };

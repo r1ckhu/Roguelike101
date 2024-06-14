@@ -6,6 +6,8 @@
 #include <typeindex>
 #include <unordered_map>
 
+#include "Tile.hpp"
+
 class Stage;
 class Actor {
   public:
@@ -29,6 +31,8 @@ class Actor {
    }
 
    int x, y;
+   Tile tile;
+
   private:
    std::unordered_map<std::type_index, std::shared_ptr<void>> components_;
 };

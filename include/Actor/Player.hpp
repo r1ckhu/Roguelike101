@@ -2,7 +2,7 @@
 #include "Actor.hpp"
 #include "Component/HealthComponent.hpp"
 
-class Player : Actor {
+class Player : public Actor {
   public:
    Player();
    Player(int health);
